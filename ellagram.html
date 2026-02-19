@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ellagram</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: rgb(255, 209, 220);
+}
+
+header {
+    position: sticky;
+    top: 0;
+    background: rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(255, 209, 220);
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+}
+
+/* STORIES */
+.stories {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.story {
+    text-align: center;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.story img {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 3px solid #ff0050;
+    object-fit: cover;
+}
+
+.story span {
+    font-size: 12px;
+}
+
+/* POSTS */
+.post {
+    background: white;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+
+.post-header {
+    padding: 10px;
+    font-weight: bold;
+}
+
+.post img {
+    width: 100%;
+}
+
+.post-content {
+    padding: 10px;
+}
+
+.like-btn {
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.liked {
+    color: red;
+}
+
+/* STORY VIEWER */
+.story-viewer {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgb(255, 209, 220);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.story-viewer img {
+    max-width: 90%;
+    max-height: 80%;
+}
+
+.story-controls {
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    gap: 20px;
+}
+
+.story-controls button {
+    padding: 10px 20px;
+    border: none;
+    background: white;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<header>Ellagram</header>
+
+<div class="container">
+
+<!-- STORIES -->
+<div class="stories">
+
+    <div class="story" data-story="1">
+        <img src="story1cover.jpg">
+        <span>George</span>
+    </div>
+
+    <div class="story" data-story="2">
+        <img src="story2cover.jpg">
+        <span>Ella</span>
+    </div>
+
+</div>
+
+<!-- POSTS -->
+<div class="post" data-id="1">
+    <div class="post-header">george</div>
+    <img src="images/1ella.jpg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>Accidental screenshot wink wink</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/3ella.jpg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>OMG LOOK AT THE DRAWINGS YAY</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/4ella.jpg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>WE ARE IN LOVE !!</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/7ella.jpg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>omg she is dreaming of me how sweet yay</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/8ella.jpg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>little drawing i did &lt;3</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/9george.jpg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>i hate my ears or something idk i cant remember the context</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/11ella.jpg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>just got a new app called airbuds seems pretty cool</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/12ellaAndGeorge.jpg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>OMG we are official !!</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/12ellaAndGeorge.jpg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>the stupid boy finally asked me out YAY !!</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/13george.jpg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>i think im so cool and wacky</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/15george.jpg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>i saw george on the tv with my parents god hes so strong and cool and stuff</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/18george.jpg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>my little sleeping angel isnt he just sooooo....</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/19ella.jpg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>WE FINALLY MET IN REAL LIFE OMG HES EVEN COOLER IRL</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/20georgeandella.jpg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>god i hope i impressed her by introducing her to Jason Watkins, she's far too cool for me</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/22ella.jpg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>havent posted in a while but YAY i went to his house !!</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/23.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>drag george here, checking in from BROMLEY !!</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/24.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>we even got masked up..</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/25.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>ZIBBY TOOK US TO ALTON TOWERS FOR GEORGES BIRTHDAY</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/27.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>*ahem* promise ring anyone?</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/28.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>yay ella took me to dinner and now i can buy monster</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/29.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>check the shirts we are so so locked in</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/30.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>somebody caught a pandabuy agent lacking #shein</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/32.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>been working out recently if u couldnt tell #huge</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/34.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>oh hey there, don't mind me just popping some balls at the old O'Brien house</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>HAPPY BIRTHDAY @ella I LOVE YOU SO MUCH</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/38.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>halloween fit #hellokitty</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">39</div>
+    <img src="images/39.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>dear daniel, i am u</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>some call it a cosy weekend i calll it uhm hellwo kitty</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">91</div>
+    <img src="images/90.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>aye lad scouse town ini #hellokitty</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/87.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>cutting up at black pool pleasure beach #windy</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/87.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>first camping trip yay!!</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/90.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>ella phone broke on her birthday.... but yay @ziizis</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/92.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>kicking back with my boy @paddington</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/87.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>scouse town yes lad #narrowhead</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/100.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>happy to see you again pedro its never safe to leave an unattended pint around me #beer</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/101.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>captured this beauty, the views alright too</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/102.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>first day in mile end #scared #uni # I LOVE YOU SO MUCH ELLA</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/103.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>never fear, gnomeo and juliet are here </div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/87.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>first time seeing basement together thsi is fun</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/107.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>SNOWBALL FIGHT #meandmefatherworkeda72hourshift #stardewvalley</div>
+    </div>
+</div>
+
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/108.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>follow @ellaacts for proffesional acting and posing and follow @george for proffessional photography</div>
+    </div>
+</div>
+
+
+<div class="post" data-id="2">
+    <div class="post-header">ella</div>
+    <img src="images/109.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>UHM OOPS I CHUDDED UHM UHM</div>
+    </div>
+</div>
+
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/110.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>#chudnation</div>
+    </div>
+</div>
+
+<div class="post" data-id="2">
+    <div class="post-header">george</div>
+    <img src="images/105.jpeg">
+    <div class="post-content">
+        <div class="like-btn">❤️ <span class="like-count">0</span></div>
+        <div>i love you so so so so much ella thank you for 3 years of unforgettable memories, u are the best thing that has or ever will happen to me</div>
+    </div>
+</div>
+
+</div>
+
+<!-- STORY VIEWER -->
+<div class="story-viewer" id="viewer">
+    <img id="storyImage">
+    <div class="story-controls">
+        <button onclick="prevStory()">Prev</button>
+        <button onclick="nextStory()">Next</button>
+        <button onclick="closeStory()">Close</button>
+    </div>
+</div>
+
+<script>
+/* --------- STORY DATA --------- */
+/* Add images manually here */
+const stories = {
+    1: ["images/109.jpeg", "images/106.jpeg"],
+    2: ["images/105.jpeg", "images/103.jpeg"]
+};
+
+let currentStory = [];
+let storyIndex = 0;
+
+const viewer = document.getElementById("viewer");
+const storyImage = document.getElementById("storyImage");
+
+document.querySelectorAll(".story").forEach(story => {
+    story.addEventListener("click", () => {
+        const id = story.getAttribute("data-story");
+        currentStory = stories[id];
+        storyIndex = 0;
+        showStory();
+        viewer.style.display = "flex";
+    });
+});
+
+function showStory() {
+    storyImage.src = currentStory[storyIndex];
+}
+
+function nextStory() {
+    if (storyIndex < currentStory.length - 1) {
+        storyIndex++;
+        showStory();
+    }
+}
+
+function prevStory() {
+    if (storyIndex > 0) {
+        storyIndex--;
+        showStory();
+    }
+}
+
+function closeStory() {
+    viewer.style.display = "none";
+}
+
+/* --------- LIKE SYSTEM --------- */
+document.querySelectorAll(".post").forEach(post => {
+    const id = post.getAttribute("data-id");
+    const btn = post.querySelector(".like-btn");
+    const countSpan = post.querySelector(".like-count");
+
+    let saved = JSON.parse(localStorage.getItem("post-" + id));
+    if (saved) {
+        countSpan.textContent = saved.count;
+        if (saved.liked) btn.classList.add("liked");
+    }
+
+    btn.addEventListener("click", () => {
+        let count = parseInt(countSpan.textContent);
+        let liked = btn.classList.contains("liked");
+
+        if (liked) {
+            count--;
+            btn.classList.remove("liked");
+        } else {
+            count++;
+            btn.classList.add("liked");
+        }
+
+        countSpan.textContent = count;
+
+        localStorage.setItem("post-" + id, JSON.stringify({
+            count: count,
+            liked: !liked
+        }));
+    });
+});
+</script>
+
+</body>
+</html>
